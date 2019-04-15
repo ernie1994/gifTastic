@@ -1,0 +1,23 @@
+
+.btn {
+    float: left;
+    margin: 5px;
+}
+
+.card {
+    float: left;
+    margin: 20px;
+}
+/* 
+.gif h3 {
+    background-color: purple;
+} */
+
+.container-fluid {
+    display: block;
+    clear: left;
+}
+
+label {
+    font-weight: bold;
+}
