@@ -28,104 +28,11 @@
         </div>
     </div>
 
-    <script>
-
-        var topics = ["dog", "cat", "bird", "rabbit", "hamster", "skunk", "goldfish", "ferret", "turtle", "super glider", "chinchilla", "hedgehog", "hermit crab", "gerbil", "elephant", "rhino", "koala", "dragon"];
-
-        function createTopicButtons() {
-
-            $("#topics").empty();
-
-            topics.forEach((topic) => {
-                var btn = $("<button>");
-                btn.attr("class", "btn btn-primary topic");
-                btn.attr("data-name", topic);
-                btn.text(topic);
-                $("#topics").append(btn);
-            });
-
-        }
-
-        function getGifs() {
-
-            $("#gifs").empty();
-
-            var base = "https://api.giphy.com/v1/gifs/search?api_key=dc6zaTOxFJmzC";
-            var search = $(this).attr("data-name");
-            var limit = 10;
-
-            var url = base + "&q=" + search + "&limit=" + limit;
-
-            $.ajax({
-                url: url,
-                method: "GET"
-            })
-                .then(function (res) {
-
-                    res.data.forEach((gif) => {
-
-                        console.log(gif);
-
-                        var $div = $("<div>");
-                        $div.attr("class", "card");
-
-                        var $img = $("<img>");
-                        $img.attr("class", "gif");
-                        $img.attr("src", gif.images.fixed_height_still.url);
-
-                        $img.attr("data-state", "still");
-                        $img.attr("data-animate-url", gif.images.fixed_height.url);
-                        $img.attr("data-still-url", gif.images.fixed_height_still.url);
-
-                        var $rating = $("<h3>");
-                        $rating.attr("class", "card-title");
-                        $rating.text("Rating: " + gif.rating.toUpperCase());
+    <div id="favorites">
+        <h1>Your Favorites</h1>
+    </div>
 
 
-                        $div.append($img);
-                        $div.append($rating);
-
-                        $("#gifs").append($div);
-                    });
-
-                });
-        }
-
-        function toggleGif() {
-            var state = $(this).attr("data-state");
-
-            var newUrl = state === "still" ? $(this).attr("data-animate-url") : $(this).attr("data-still-url");
-
-            if (state === "still") {
-                $(this).attr("data-state", "animating");
-            }
-            else if (state === "animating") {
-                $(this).attr("data-state", "still");
-            }
-
-            $(this).attr("src", newUrl);
-        }
-
-
-        $("body").on("click", "#submitNewAnimal", function () {
-
-            event.preventDefault();
-
-            var $input = $("#newAnimalInput");
-
-            topics.push($input.val());
-
-            $input.val(null);
-
-            createTopicButtons();
-        });
-
-        $("body").on("click", ".gif", toggleGif);
-
-        $("body").on("click", ".topic", getGifs);
-
-        createTopicButtons();
-    </script>
 
 </body>
 

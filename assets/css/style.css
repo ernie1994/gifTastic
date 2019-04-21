@@ -4,6 +4,10 @@
     margin: 5px;
 }
 
+.card .card-body a {
+    color: white;
+}
+
 .card {
     float: left;
     margin: 20px;
@@ -13,11 +17,17 @@
     background-color: purple;
 } */
 
-.container-fluid {
+.container-fluid, #display {
     display: block;
     clear: left;
 }
 
+
 label {
     font-weight: bold;
+}
+
+h1 {
+    text-align: center;
+    margin-top: 50px;
 }
